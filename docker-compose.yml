@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  moinmoin:
+    build:
+      moin/
+    volumes:
+      - /home/htorianik/opt/moin_instance:/opt/moin/instance
+      - app_sock_dir:/tmp/moin
+      - static_dir:/var/moin/static
+
+  nginx:
+    build:
+      nginx/
+    ports:
+      - "8081:80"
+    volumes:
+      - app_sock_dir:/tmp/moin
+      - static_dir:/var/moin/static
+
+volumes:
+  app_sock_dir:
+  static_dir:
+    
+
+
