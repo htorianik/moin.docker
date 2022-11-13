@@ -31,8 +31,11 @@ RUN curl --output moin.tar.gz http://static.moinmo.in/files/moin-${MOIN_VERSION}
     mv ./moin-${MOIN_VERSION}/MoinMoin/web/static/htdocs /var/moin/static && \
     rm -rf moin-${MOIN_VERSION}
 
-# making a volume for the instance
-VOLUME /opt/moin/instance
+# expose volume for static files
+VOLUME /var/moin/static
+
+# expose volume for a socket
+VOLUME /tmp/moin
 
 # expose http port
 EXPOSE 80
